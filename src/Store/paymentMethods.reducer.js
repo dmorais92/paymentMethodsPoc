@@ -12,19 +12,20 @@ export default function users(
 	case ACTION_TYPES.PAYMENT_METHODS.GET_PM_FROM_API:
 		return {
 			...state,
-			isFetchingUsers: true
+			isFetchingPayments: true
 		};
 	case ACTION_TYPES.PAYMENT_METHODS.GET_PM_SUCCESS:
 		return {
 			...state,
-			isFetchingUsers: false,
-			userList: action.users
+			isFetchingPayments: false,
+			paymentMethodsData: action.users
 		};
 	case ACTION_TYPES.PAYMENT_METHODS.GET_PM_FAILED:
 		return {
 			...state,
-			isFetchingUsers: false,
-			error: action.error
+			isFetchingPayments: false,
+			error: action.error,
+			paymentMethodsData: []
 		};
 		/*
       case ACTION_TYPES.PAYMENT_METHODS.UPDATE_PM:

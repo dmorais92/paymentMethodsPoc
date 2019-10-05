@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import logo from '../logo.svg';
 import StyledComponents from '../Components.styled';
 
 const {
@@ -14,11 +15,27 @@ const {
 	ListItemSubtitle
 } = StyledComponents;
 
+//========================================================================================
+/*                                                                                      *
+ *                                  Payments component                                  *
+ *                                                                                      */
+//========================================================================================
+
 const Payments = props => {
 	const { className } = props;
 	return (
 		<Page classNamer={className}>
-			<AppBar>Payments</AppBar>
+			<AppBar>
+				<span>Payments</span>
+				<div>
+					<span>
+						Made with React by <img src={logo} />
+					</span>
+					<span>
+						<a href="https://github.com/dmorais92/">David Morais</a>
+					</span>
+				</div>
+			</AppBar>
 			<Layout>
 				<h1>Payment Methods</h1>
 				<h2>Click to expand and view payment method details</h2>
@@ -56,6 +73,8 @@ Payments.propTypes = {
 Payments.defaultProps = {
 	paymentMethods: []
 };
+
+//──── Container ─────────────────────────────────────────────────────────────────────────
 
 const mapStateToProps = state => ({
 	paymentMethods: state.payments.paymentMethodsData

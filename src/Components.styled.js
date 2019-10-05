@@ -22,7 +22,7 @@ const Page = styled.div`
 `;
 
 const Layout = styled.div`
-	width: 600px;
+	max-width: 600px;
 	margin: 0px 20px;
 	display: flex;
 	flex-flow: column nowrap;
@@ -56,11 +56,26 @@ const AppBar = styled.div`
 	line-height: 23px;
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24), 0px 0px 4px rgba(0, 0, 0, 0.12);
 	margin-bottom: 12px;
 	padding: 16px;
 	max-height: 56px;
+	div {
+		display: flex;
+		flex-flow: column nowrap;
+		img {
+			max-width: 25px;
+		}
+		span {
+			display: flex;
+			flex-flow: row nowrap;
+			font-size: 12px;
+			a {
+				color: ${THEME.colors.secondary} !important;
+			}
+		}
+	}
 `;
 
 const List = styled.ul`
