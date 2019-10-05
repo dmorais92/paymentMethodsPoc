@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://raw.githubusercontent.com",
+  baseURL: "https://api.github.com/gists/",
   timeout: 1000
 });
 
