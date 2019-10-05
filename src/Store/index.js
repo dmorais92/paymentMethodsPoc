@@ -6,7 +6,7 @@ import RootReducer from './rootReducer';
 const store = createStore(
 	RootReducer,
 	{
-		paymentMethods: {
+		payments: {
 			paymentMethodsData: []
 		}
 	},

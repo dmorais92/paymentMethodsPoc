@@ -7,7 +7,7 @@ const THEME = {
 	},
 	font: {
 		primaryColor: '#333',
-		secondaryColor: '#rgba(0, 0, 0, 0.5)'
+		secondaryColor: 'rgba(0, 0, 0, 0.5)'
 	}
 };
 
@@ -19,21 +19,6 @@ const Page = styled.div`
 	justify-content: flex-start;
 	background-color: ${THEME.colors.secondary};
 	color: ${THEME.font.primaryColor};
-	h1 {
-		font-family: Roboto;
-		font-style: normal;
-		font-weight: normal;
-		font-size: 24px;
-		line-height: 32px;
-	}
-	h2 {
-		font-family: Roboto;
-		font-style: normal;
-		font-weight: 500;
-		font-size: 14px;
-		line-height: 17px;
-		color: ${THEME.font.secondaryColor};
-	}
 `;
 
 const Layout = styled.div`
@@ -41,6 +26,23 @@ const Layout = styled.div`
 	margin: 0px 20px;
 	display: flex;
 	flex-flow: column nowrap;
+	h1,
+	h2 {
+		font-family: Roboto;
+		margin: 5px;
+		font-style: normal;
+	}
+	h1 {
+		font-weight: normal;
+		font-size: 24px;
+		line-height: 32px;
+	}
+	h2 {
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 17px;
+		color: ${THEME.font.secondaryColor};
+	}
 `;
 
 const AppBar = styled.div`
@@ -54,10 +56,10 @@ const AppBar = styled.div`
 	line-height: 23px;
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: space-around;
+	justify-content: space-evenly;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.24), 0px 0px 4px rgba(0, 0, 0, 0.12);
 	margin-bottom: 12px;
-	padding: 16px 0px;
+	padding: 16px;
 	max-height: 56px;
 `;
 
