@@ -3,7 +3,8 @@ import styled from 'styled-components';
 const THEME = {
 	colors: {
 		primary: '#00BCD4',
-		secondary: '#fff'
+		secondary: '#fff',
+		neutral: '#eee'
 	},
 	font: {
 		primaryColor: '#333',
@@ -23,6 +24,7 @@ const Page = styled.div`
 
 const Layout = styled.div`
 	max-width: 600px;
+	width: 100%;
 	margin: 0px 20px;
 	display: flex;
 	flex-flow: column nowrap;
@@ -84,6 +86,9 @@ const List = styled.ul`
 	margin: 32px 0px;
 	padding: 16px;
 	width: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	max-height 65vh;
 `;
 
 const ListItem = styled.li`
@@ -91,19 +96,23 @@ const ListItem = styled.li`
 	font-style: normal;
 	font-weight: normal;
 	list-style-type: none;
-	height: 72px;
+	min-height: 72px;
 	padding: 0px 15px;
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
 	align-items: center;
+	border-radius: 2px;
 	svg {
 		height: 12px;
 		width: 12px;
 		transition: all 0.25s;
-		.inverted {
-			transform: rotate(180 deg);
+		&.inverted {
+			transform: rotate(180deg);
 		}
+	}
+	&:hover {
+		background-color: ${THEME.colors.neutral};
 	}
 `;
 
@@ -124,12 +133,25 @@ const ListItemSubtitle = styled.span`
 	color: ${THEME.font.secondaryColor};
 `;
 
+const Button = styled.button`
+	background-color: ${THEME.colors.primary};
+	border-radius: 2px;
+	border: none;
+	color: ${THEME.colors.secondary};
+	height: 24px;
+	&:hover {
+		background-color: ${THEME.colors.primary}dd;
+		cursor: pointer;
+	}
+`;
+
 export default {
 	Page,
 	AppBar,
 	List,
 	ListItem,
 	Layout,
+	Button,
 	ListItemTitleSubtitle,
 	ListItemTitle,
 	ListItemSubtitle
