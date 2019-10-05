@@ -65,8 +65,9 @@ const AppBar = styled.div`
 	div {
 		display: flex;
 		flex-flow: column nowrap;
-		img {
-			max-width: 25px;
+		svg {
+			width: 24px;
+			height: 24px;
 		}
 		span {
 			display: flex;
@@ -90,6 +91,20 @@ const ListItem = styled.li`
 	font-style: normal;
 	font-weight: normal;
 	list-style-type: none;
+	height: 72px;
+	padding: 0px 15px;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+	svg {
+		height: 12px;
+		width: 12px;
+		transition: all 0.25s;
+		.inverted {
+			transform: rotate(180 deg);
+		}
+	}
 `;
 
 const ListItemTitleSubtitle = styled.div`

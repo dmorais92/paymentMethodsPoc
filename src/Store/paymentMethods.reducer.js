@@ -9,8 +9,9 @@ const MAP_PATH_TO_PROP = {
 	debtor: 'attributes.debtor_party',
 	purpose: 'attributes.payment_purpose',
 	paymentType: 'attributes.payment_type',
+	currency: 'attributes.currency',
 	date: 'attributes.processing_date',
-	reference: 'attributes_reference'
+	reference: 'attributes.reference'
 };
 
 export default function users(

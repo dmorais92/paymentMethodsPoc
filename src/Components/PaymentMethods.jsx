@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import logo from '../logo.svg';
+import { ReactComponent as DownIcon } from './Icons/DownIcon.svg';
 import { paymentMethodsActions } from '../Store/actions';
 import api from '../api';
-import StyledComponents from '../Components.styled';
+import StyledComponents from './Components.styled';
 import mockData from '../dev.json';
 import unNest from '../Utils/unNest';
 
@@ -40,27 +40,22 @@ const Payments = props => {
 	});
 	return (
 		<Page>
-			<AppBar>
-				<span>Payments</span>
-				<div>
-					<span>
-						Made with React by <img src={logo} />
-					</span>
-					<span>
-						<a href="https://github.com/dmorais92/">David Morais</a>
-					</span>
-				</div>
-			</AppBar>
 			<Layout>
 				<h1>Payment Methods</h1>
 				<h2>Click to expand and view payment method details</h2>
 				<List>
-					<ListItem>
-						<ListItemTitleSubtitle>
-							<ListItemTitle>Example</ListItemTitle>
-							<ListItemSubtitle>2031-32-44</ListItemSubtitle>
-						</ListItemTitleSubtitle>
-					</ListItem>
+					{paymentMethods.map((pm, i) => {
+						return (
+							<ListItem key={pm.reference + i}>
+								{pm.amount} {pm.currency}
+								<ListItemTitleSubtitle>
+									<ListItemTitle>{pm.reference}</ListItemTitle>
+									<ListItemSubtitle>{pm.date}</ListItemSubtitle>
+								</ListItemTitleSubtitle>
+								<DownIcon />
+							</ListItem>
+						);
+					})}
 				</List>
 			</Layout>
 		</Page>
@@ -74,7 +69,7 @@ Payments.propTypes = {
 	paymentMethods: PropTypes.arrayOf(
 		PropTypes.shape({
 			type: PropTypes.string,
-			ammount: PropTypes.number,
+			amount: PropTypes.string,
 			beneficiary: PropTypes.object,
 			charges: PropTypes.shape({
 				sender: PropTypes.object,
