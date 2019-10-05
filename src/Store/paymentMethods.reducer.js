@@ -39,7 +39,7 @@ export default function users(
 		return {
 			...state,
 			isFetchingPayments: false,
-			error: action.error,
+			error: action.payload.error,
 			paymentMethodsData: []
 		};
 	default:

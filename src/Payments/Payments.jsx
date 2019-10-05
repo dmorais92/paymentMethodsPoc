@@ -5,6 +5,7 @@ import logo from '../logo.svg';
 import { paymentMethodsActions } from '../Store/actions';
 import api from '../api';
 import StyledComponents from '../Components.styled';
+import mockData from '../dev.json';
 import unNest from '../Utils/unNest';
 
 const {
@@ -125,6 +126,7 @@ const mapDispatchToProps = dispatch => ({
 			}
 		} catch {
 			dispatch(getPaymentMethodsFailed());
+			dispatch(getPaymentMethodsSuccess(mockData.data));
 		}
 	}
 });
