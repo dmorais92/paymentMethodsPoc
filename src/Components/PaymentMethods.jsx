@@ -1,23 +1,14 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ReactComponent as DownIcon } from './Icons/DownIcon.svg';
 import { paymentMethodsActions } from '../Store/actions';
 import api from '../api';
 import StyledComponents from './Components.styled';
 import mockData from '../dev.json';
 import unNest from '../Utils/unNest';
+import PaymentMethodItem from './PaymentMethodItem';
 
-const {
-	Page,
-	AppBar,
-	List,
-	ListItem,
-	Layout,
-	ListItemTitleSubtitle,
-	ListItemTitle,
-	ListItemSubtitle
-} = StyledComponents;
+const { Page, List, Layout } = StyledComponents;
 
 //========================================================================================
 /*                                                                                      *
@@ -45,16 +36,7 @@ const Payments = props => {
 				<h2>Click to expand and view payment method details</h2>
 				<List>
 					{paymentMethods.map((pm, i) => {
-						return (
-							<ListItem key={pm.reference + i}>
-								{pm.amount} {pm.currency}
-								<ListItemTitleSubtitle>
-									<ListItemTitle>{pm.reference}</ListItemTitle>
-									<ListItemSubtitle>{pm.date}</ListItemSubtitle>
-								</ListItemTitleSubtitle>
-								<DownIcon />
-							</ListItem>
-						);
+						return <PaymentMethodItem key={pm.reference + i} {...pm} />;
 					})}
 				</List>
 			</Layout>
