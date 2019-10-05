@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import logo from '../logo.svg';
+import { paymentMethodsActions } from '../Store/actions';
+import api from '../api';
 import StyledComponents from '../Components.styled';
 
 const {
@@ -22,7 +24,11 @@ const {
 //========================================================================================
 
 const Payments = props => {
-	const { className } = props;
+	const { className, paymentMethods, getPaymentMethods } = props;
+
+	useEffect(() => {
+		getPaymentMethods();
+	});
 	return (
 		<Page classNamer={className}>
 			<AppBar>
@@ -76,12 +82,35 @@ Payments.defaultProps = {
 
 //──── Container ─────────────────────────────────────────────────────────────────────────
 
+const {
+	getPaymentMethods,
+	getPaymentMethodsSuccess,
+	getPaymentMethodsFailed,
+	updatePaymentMethod,
+	deletePaymentMethod
+} = paymentMethodsActions;
+
 const mapStateToProps = state => ({
 	paymentMethods: state.payments.paymentMethodsData
 });
 
+const GITHUB_GIST_ID = '3465445ccd2031f19bf5fc5a15035c5b';
+const GITHUB_GIST_FILENAME = 'paymentMethods.json';
 const mapDispatchToProps = dispatch => ({
-	// fnBlaBla: () => dispatch(action.name()),
+	getPaymentMethods: async () => {
+		dispatch(getPaymentMethods());
+		try {
+			const apiData = await api.get(`/${GITHUB_GIST_ID}`);
+			if (apiData && apiData?.data?.files[GITHUB_GIST_FILENAME]) {
+				const paymentMethodsData = JSON.parse(
+					apiData.data.files[GITHUB_GIST_FILENAME]
+				);
+				dispatch(getPaymentMethodsSuccess(apiData.data));
+			}
+		} catch {
+			dispatch(getPaymentMethodsFailed());
+		}
+	}
 });
 
 export default connect(

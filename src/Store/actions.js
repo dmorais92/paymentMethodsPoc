@@ -12,16 +12,17 @@ export const getPaymentMethods = () => ({
 	type: ACTION_TYPES.PAYMENT_METHODS.GET_PM_FROM_API
 });
 
-export const getPaymentMethodsSUccess = () => ({
+export const getPaymentMethodsFailed = () => ({
 	type: ACTION_TYPES.PAYMENT_METHODS.GET_PM_FAILED,
 	payload: {
 		error: 'Failed getting methods from API'
 	}
 });
 
-export const getPaymentMethodsFailed = e => ({
+export const getPaymentMethodsSuccess = paymentMethods => ({
 	type: ACTION_TYPES.PAYMENT_METHODS.GET_PM_SUCCESS,
 	payload: {
+		paymentMethods,
 		error: false
 	}
 });
@@ -39,3 +40,11 @@ export const deletePaymentMethod = deletedPaymentMethod => ({
 		deletedPaymentMethod
 	}
 });
+
+export const paymentMethodsActions = {
+	getPaymentMethods,
+	getPaymentMethodsSuccess,
+	getPaymentMethodsFailed,
+	updatePaymentMethod,
+	deletePaymentMethod
+};
