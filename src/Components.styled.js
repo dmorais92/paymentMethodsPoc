@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import AppUnstyled from "./App";
 
 const THEME = {
   colors: {
