@@ -1,3 +1,11 @@
+//========================================================================================
+/*                                                                                      *
+ *                                        unNest                                        *
+ *                      Grabs a property deeply nested in an object                     *
+ *         Example: unNest({person: {name: 'David'}}, 'person.name') === 'David'        *
+ *                                                                                      */
+//========================================================================================
+
 export default function unNest(object, properties) {
 	const propsArray = properties.split('.');
 	let result;

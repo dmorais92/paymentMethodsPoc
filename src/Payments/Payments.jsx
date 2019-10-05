@@ -5,6 +5,7 @@ import logo from '../logo.svg';
 import { paymentMethodsActions } from '../Store/actions';
 import api from '../api';
 import StyledComponents from '../Components.styled';
+import unNest from '../Utils/unNest';
 
 const {
 	Page,
@@ -24,13 +25,20 @@ const {
 //========================================================================================
 
 const Payments = props => {
-	const { className, paymentMethods, getPaymentMethods } = props;
+	const {
+		isFetchingPayments,
+		paymentMethods,
+		error,
+		getPaymentMethods
+	} = props;
 
 	useEffect(() => {
-		getPaymentMethods();
+		if (!isFetchingPayments && !error && !paymentMethods.length) {
+			getPaymentMethods();
+		}
 	});
 	return (
-		<Page classNamer={className}>
+		<Page>
 			<AppBar>
 				<span>Payments</span>
 				<div>
@@ -59,15 +67,18 @@ const Payments = props => {
 };
 
 Payments.propTypes = {
+	isFetchingPayments: PropTypes.bool,
+	error: PropTypes.string,
+	getPaymentMethods: PropTypes.func.isRequired,
 	paymentMethods: PropTypes.arrayOf(
 		PropTypes.shape({
 			type: PropTypes.string,
 			ammount: PropTypes.number,
 			beneficiary: PropTypes.object,
-			charges: {
+			charges: PropTypes.shape({
 				sender: PropTypes.object,
 				receiver: PropTypes.object
-			},
+			}),
 			debtor: PropTypes.object,
 			paymentType: PropTypes.string,
 			date: PropTypes.string,
@@ -77,7 +88,9 @@ Payments.propTypes = {
 };
 
 Payments.defaultProps = {
-	paymentMethods: []
+	paymentMethods: [],
+	error: '',
+	isFetchingPayments: false
 };
 
 //──── Container ─────────────────────────────────────────────────────────────────────────
@@ -91,6 +104,8 @@ const {
 } = paymentMethodsActions;
 
 const mapStateToProps = state => ({
+	isFetchingPayments: state.payments.isFetchingPayments,
+	error: state.payments.error,
 	paymentMethods: state.payments.paymentMethodsData
 });
 
@@ -101,11 +116,12 @@ const mapDispatchToProps = dispatch => ({
 		dispatch(getPaymentMethods());
 		try {
 			const apiData = await api.get(`/${GITHUB_GIST_ID}`);
-			if (apiData && apiData?.data?.files[GITHUB_GIST_FILENAME]) {
-				const paymentMethodsData = JSON.parse(
-					apiData.data.files[GITHUB_GIST_FILENAME]
-				);
-				dispatch(getPaymentMethodsSuccess(apiData.data));
+			if (apiData && unNest(apiData, 'data.files')[GITHUB_GIST_FILENAME]) {
+				const paymentMethodsData =
+					JSON.parse(
+						unNest(apiData, 'data.files')[GITHUB_GIST_FILENAME].content
+					).data || [];
+				dispatch(getPaymentMethodsSuccess(paymentMethodsData));
 			}
 		} catch {
 			dispatch(getPaymentMethodsFailed());

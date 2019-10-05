@@ -1,4 +1,17 @@
 import { ACTION_TYPES } from './actions';
+import getPropsFromRawData from '../Utils/getPropsFromRawData';
+
+const MAP_PATH_TO_PROP = {
+	type: 'type',
+	amount: 'attributes.amount',
+	benificiary: 'attributes.beneficiary_party',
+	charges: 'attributes.charges_information',
+	debtor: 'attributes.debtor_party',
+	purpose: 'attributes.payment_purpose',
+	paymentType: 'attributes.payment_type',
+	date: 'attributes.processing_date',
+	reference: 'attributes_reference'
+};
 
 export default function users(
 	state = {
@@ -18,7 +31,9 @@ export default function users(
 		return {
 			...state,
 			isFetchingPayments: false,
-			paymentMethodsData: action.users
+			paymentMethodsData: action.payload.paymentMethods.map(pm =>
+				getPropsFromRawData(pm, MAP_PATH_TO_PROP)
+			)
 		};
 	case ACTION_TYPES.PAYMENT_METHODS.GET_PM_FAILED:
 		return {
@@ -27,16 +42,6 @@ export default function users(
 			error: action.error,
 			paymentMethodsData: []
 		};
-		/*
-      case ACTION_TYPES.PAYMENT_METHODS.UPDATE_PM:
-        return {
-          ...state,
-        };
-      case ACTION_TYPES.PAYMENT_METHODS.DELETE_PM:
-        return {
-          ...state,
-        };
-        */
 	default:
 		return state;
 	}

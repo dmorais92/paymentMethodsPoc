@@ -41,6 +41,7 @@ const Layout = styled.div`
 		font-weight: 500;
 		font-size: 14px;
 		line-height: 17px;
+		max-width: 50%;
 		color: ${THEME.font.secondaryColor};
 	}
 `;
