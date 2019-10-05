@@ -1,4 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # Payment Methods Frontend
   - Built with React/Redux.
@@ -7,8 +6,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - Persistence through Local Storage
   - Tested components and reducers with Jest.
 
-
-
+![Payment Methods Diagram](./PaymentMethods.svg)
+## CRA
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Available Scripts
 
 In the project directory, you can run:
