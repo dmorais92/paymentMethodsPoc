@@ -3,16 +3,7 @@ import PaymentMethods from './Components/PaymentMethods';
 import StyledComponents from './Components/Components.styled';
 import { ReactComponent as Logo } from './Components/Icons/logo.svg';
 
-const {
-	Page,
-	AppBar,
-	List,
-	ListItem,
-	Layout,
-	ListItemTitleSubtitle,
-	ListItemTitle,
-	ListItemSubtitle
-} = StyledComponents;
+const { AppBar } = StyledComponents;
 
 function App({ className }) {
 	return (

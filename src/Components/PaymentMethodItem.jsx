@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import StyledComponents from './Components.styled';
 import { ReactComponent as DownIcon } from './Icons/DownIcon.svg';
+import InlineEditInput from './InlineEditInput';
 
 const {
 	Button,
@@ -16,7 +17,7 @@ const {
 const PaymentMethodItem = props => {
 	const [expanded, toggleExpanded] = useState(false);
 	const ExpandedSection = styled.div`
-		margin: 12px;
+		margin: 6px;
 		height: auto;
 		width: 100%;
 		opacity: 1;
@@ -25,6 +26,9 @@ const PaymentMethodItem = props => {
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: space-between;
+		div {
+			margin: 0px 5px 5px 0px;
+		}
 	`;
 	return (
 		<ListItem>
@@ -42,8 +46,24 @@ const PaymentMethodItem = props => {
 			{expanded && (
 				<ExpandedSection>
 					<ListItemTitleSubtitle>
+						<ListItemTitle>Transaction</ListItemTitle>
+						<ListItemSubtitle>{props.type}</ListItemSubtitle>
+					</ListItemTitleSubtitle>
+					<ListItemTitleSubtitle>
 						<ListItemTitle>Purpose</ListItemTitle>
-						<ListItemSubtitle>{props.purpose}</ListItemSubtitle>
+						<InlineEditInput
+							value={props.purpose}
+							onChange={val => console.log(val)}
+							viewProp={'purpose'}
+						/>
+					</ListItemTitleSubtitle>
+					<ListItemTitleSubtitle>
+						<ListItemTitle>Reference</ListItemTitle>
+						<InlineEditInput
+							value={props.reference}
+							onChange={val => console.log(val)}
+							viewProp={'reference'}
+						/>
 					</ListItemTitleSubtitle>
 					<ListItemTitleSubtitle>
 						<ListItemTitle>Payment Type</ListItemTitle>
@@ -58,7 +78,12 @@ const PaymentMethodItem = props => {
 						</ListItemSubtitle>
 					</ListItemTitleSubtitle>
 					<ListItemTitleSubtitle>
-						<ListItemTitle>Charges</ListItemTitle>
+						<ListItemTitle>Amount</ListItemTitle>
+
+						<ListItemSubtitle>
+							{props.amount} {props.currency}
+						</ListItemSubtitle>
+						<ListItemTitle> + Charges</ListItemTitle>
 						<ListItemSubtitle>
 							{props.charges.receiver_charges_amount}{' '}
 							{props.charges.receiver_charges_currency}
