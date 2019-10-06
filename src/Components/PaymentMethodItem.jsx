@@ -124,18 +124,25 @@ const PaymentMethodItem = (props) => {
               {' '}
               {currency}
             </ListItemSubtitle>
-            <ListItemTitle> + Receiver Charges</ListItemTitle>
+            <ListItemTitle>Receiver Charges</ListItemTitle>
             <ListItemSubtitle>
-              {charges.receiver_charges_amount}
-              {' '}
-              {charges.receiver_charges_currency}
+              {`+${charges.receiver_charges_amount} ${charges.receiver_charges_currency}`}
             </ListItemSubtitle>
-            <ListItemTitle> + Sender Charges</ListItemTitle>
-            <ListItemSubtitle>
-              {charges.receiver_charges_amount}
-              {' '}
-              {charges.receiver_charges_currency}
-            </ListItemSubtitle>
+            {
+              charges && charges.sender_charges && charges.sender_charges.length && (
+                <>
+
+                  <ListItemTitle>Sender Charges</ListItemTitle>
+                  {
+                charges.sender_charges.map((charge) => (
+                  <ListItemSubtitle>
+                    {`+${charge.amount} ${charge.currency}`}
+                  </ListItemSubtitle>
+                ))
+              }
+                </>
+              )
+            }
           </ListItemTitleSubtitle>
         </ExpandedSection>
       )}
