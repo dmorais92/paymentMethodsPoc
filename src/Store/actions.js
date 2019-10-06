@@ -15,7 +15,7 @@ export const getPaymentMethods = () => ({
 export const getPaymentMethodsFailed = () => ({
 	type: ACTION_TYPES.PAYMENT_METHODS.GET_PM_FAILED,
 	payload: {
-		error: 'Failed getting methods from API'
+		error: 'Failed getting payment methods from API'
 	}
 });
 
