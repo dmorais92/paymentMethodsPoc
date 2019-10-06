@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppBar component matches snapshot 1`] = `
+<div
+  className="sc-htpNat csDlPS"
+/>
+`;
+
+exports[`Button component matches snapshot 1`] = `
+<button
+  className="sc-dnqmqq bBTZLR"
+/>
+`;
+
+exports[`Button component renders multiple children 1`] = `
+<button
+  className="sc-dnqmqq bBTZLR"
+>
+  <h1>
+    Testing with multiple children
+  </h1>
+  A short paragraph
+</button>
+`;
+
+exports[`Button component renders with extra classes 1`] = `
+<button
+  className="sc-dnqmqq bBTZLR an array of classes"
+/>
+`;
+
+exports[`Button snapshot renders with extra classes 1`] = `
+<button
+  className="sc-dnqmqq bBTZLR an array of classes"
+/>
+`;
+
+exports[`Layout component matches snapshot 1`] = `
+<div
+  className="sc-bwzfXH bHMTeK"
+/>
+`;
+
+exports[`List component matches snapshot 1`] = `
+<ul
+  className="sc-ifAKCX kxovTQ"
+/>
+`;
+
+exports[`ListItem component matches snapshot 1`] = `
+<li
+  className="sc-EHOje gXHTYI"
+/>
+`;
+
+exports[`Page component matches snapshot 1`] = `
+<div
+  className="sc-bdVaJa fPdLJN"
+/>
+`;
