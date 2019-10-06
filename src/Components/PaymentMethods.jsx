@@ -21,7 +21,8 @@ const Payments = props => {
 		isFetchingPayments,
 		paymentMethods,
 		error,
-		getPaymentMethods
+		getPaymentMethods,
+		updatePaymentMethod
 	} = props;
 
 	useEffect(() => {
@@ -36,7 +37,13 @@ const Payments = props => {
 				<h2>Click to expand and view payment method details</h2>
 				<List>
 					{paymentMethods.map((pm, i) => {
-						return <PaymentMethodItem key={pm.reference + i} {...pm} />;
+						return (
+							<PaymentMethodItem
+								key={pm.reference + i}
+								{...pm}
+								onChange={updatePaymentMethod}
+							/>
+						);
 					})}
 				</List>
 			</Layout>
@@ -48,6 +55,7 @@ Payments.propTypes = {
 	isFetchingPayments: PropTypes.bool,
 	error: PropTypes.string,
 	getPaymentMethods: PropTypes.func.isRequired,
+	updatePaymentMethod: PropTypes.func.isRequired,
 	paymentMethods: PropTypes.arrayOf(
 		PropTypes.shape({
 			type: PropTypes.string,
@@ -90,6 +98,9 @@ const mapStateToProps = state => ({
 const GITHUB_GIST_ID = '3465445ccd2031f19bf5fc5a15035c5b';
 const GITHUB_GIST_FILENAME = 'paymentMethods.json';
 const mapDispatchToProps = dispatch => ({
+	updatePaymentMethod: (value, prop, id) => {
+		dispatch(updatePaymentMethod(value[prop], prop, id));
+	},
 	getPaymentMethods: async () => {
 		dispatch(getPaymentMethods());
 		try {

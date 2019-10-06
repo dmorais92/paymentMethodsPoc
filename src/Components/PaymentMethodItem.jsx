@@ -30,15 +30,29 @@ const PaymentMethodItem = props => {
 			margin: 0px 5px 5px 0px;
 		}
 	`;
+	const {
+		onChange,
+		amount,
+		currency,
+		reference,
+		date,
+		purpose,
+		type,
+		id,
+		paymentType,
+		debtor,
+		benificiary,
+		charges
+	} = props;
 	return (
 		<ListItem>
 			<ListItemTitleSubtitle>
-				<ListItemTitle>{props.amount}</ListItemTitle>
-				<ListItemSubtitle>{props.currency}</ListItemSubtitle>
+				<ListItemTitle>{amount}</ListItemTitle>
+				<ListItemSubtitle>{currency}</ListItemSubtitle>
 			</ListItemTitleSubtitle>
 			<ListItemTitleSubtitle>
-				<ListItemTitle>{props.reference}</ListItemTitle>
-				<ListItemSubtitle>{props.date}</ListItemSubtitle>
+				<ListItemTitle>{reference}</ListItemTitle>
+				<ListItemSubtitle>{date}</ListItemSubtitle>
 			</ListItemTitleSubtitle>
 			<Button onClick={() => toggleExpanded(!expanded)}>
 				<DownIcon className={(expanded && 'inverted') || ''} />
@@ -47,46 +61,44 @@ const PaymentMethodItem = props => {
 				<ExpandedSection>
 					<ListItemTitleSubtitle>
 						<ListItemTitle>Transaction</ListItemTitle>
-						<ListItemSubtitle>{props.type}</ListItemSubtitle>
+						<ListItemSubtitle>{type}</ListItemSubtitle>
 					</ListItemTitleSubtitle>
 					<ListItemTitleSubtitle>
 						<ListItemTitle>Purpose</ListItemTitle>
 						<InlineEditInput
-							value={props.purpose}
-							onChange={val => console.log(val)}
+							value={purpose}
+							onChange={val => onChange(val, 'purpose', id)}
 							viewProp={'purpose'}
 						/>
 					</ListItemTitleSubtitle>
 					<ListItemTitleSubtitle>
 						<ListItemTitle>Reference</ListItemTitle>
 						<InlineEditInput
-							value={props.reference}
-							onChange={val => console.log(val)}
+							value={reference}
+							onChange={val => onChange(val, 'reference', id)}
 							viewProp={'reference'}
 						/>
 					</ListItemTitleSubtitle>
 					<ListItemTitleSubtitle>
 						<ListItemTitle>Payment Type</ListItemTitle>
-						<ListItemSubtitle>{props.paymentType}</ListItemSubtitle>
+						<ListItemSubtitle>{paymentType}</ListItemSubtitle>
 					</ListItemTitleSubtitle>
 					<ListItemTitleSubtitle>
 						<ListItemTitle>From:</ListItemTitle>
-						<ListItemSubtitle>{props.debtor.account_name}</ListItemSubtitle>
+						<ListItemSubtitle>{debtor.account_name}</ListItemSubtitle>
 						<ListItemTitle>To:</ListItemTitle>
-						<ListItemSubtitle>
-							{props.benificiary.account_name}
-						</ListItemSubtitle>
+						<ListItemSubtitle>{benificiary.account_name}</ListItemSubtitle>
 					</ListItemTitleSubtitle>
 					<ListItemTitleSubtitle>
 						<ListItemTitle>Amount</ListItemTitle>
 
 						<ListItemSubtitle>
-							{props.amount} {props.currency}
+							{amount} {currency}
 						</ListItemSubtitle>
 						<ListItemTitle> + Charges</ListItemTitle>
 						<ListItemSubtitle>
-							{props.charges.receiver_charges_amount}{' '}
-							{props.charges.receiver_charges_currency}
+							{charges.receiver_charges_amount}{' '}
+							{charges.receiver_charges_currency}
 						</ListItemSubtitle>
 					</ListItemTitleSubtitle>
 				</ExpandedSection>
@@ -98,6 +110,7 @@ const PaymentMethodItem = props => {
 PaymentMethodItem.propTypes = {
 	type: PropTypes.string,
 	amount: PropTypes.string,
+	id: PropTypes.string.isRequired,
 	beneficiary: PropTypes.object,
 	charges: PropTypes.shape({
 		sender: PropTypes.object,

@@ -27,10 +27,12 @@ export const getPaymentMethodsSuccess = paymentMethods => ({
 	}
 });
 
-export const updatePaymentMethod = updatedPaymentMethod => ({
+export const updatePaymentMethod = (value, prop, id) => ({
 	type: ACTION_TYPES.PAYMENT_METHODS.UPDATE_PM,
 	payload: {
-		updatedPaymentMethod
+		newValue: value,
+		viewProp: prop,
+		updatedPaymentMethodId: id
 	}
 });
 

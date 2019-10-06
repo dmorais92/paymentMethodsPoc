@@ -38,6 +38,16 @@ export default function users(
 				id: uniqid()
 			}))
 		};
+	case ACTION_TYPES.PAYMENT_METHODS.UPDATE_PM:
+		return {
+			...state,
+			paymentMethodsData: state.paymentMethodsData.map(pm => {
+				if (pm.id === action.payload.updatedPaymentMethodId) {
+					pm[action.payload.viewProp] = action.payload.newValue;
+				}
+				return pm;
+			})
+		};
 	case ACTION_TYPES.PAYMENT_METHODS.GET_PM_FAILED:
 		return {
 			...state,
