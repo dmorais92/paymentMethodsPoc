@@ -101,6 +101,7 @@ const ListItem = styled.li`
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
+	width: 100%;
 	align-items: center;
 	border-radius: 2px;
 	svg {
@@ -119,6 +120,7 @@ const ListItem = styled.li`
 const ListItemTitleSubtitle = styled.div`
 	display: flex;
 	flex-flow: column nowrap;
+	width: 30%;
 `;
 
 const ListItemTitle = styled.span`

@@ -83,19 +83,19 @@ const PaymentMethodItem = props => {
 						<ListItemSubtitle>{type}</ListItemSubtitle>
 					</ListItemTitleSubtitle>
 					<ListItemTitleSubtitle>
-						<ListItemTitle>Purpose</ListItemTitle>
-						<InlineEditInput
-							value={purpose}
-							onChange={val => onChange(val, 'purpose', id)}
-							viewProp="purpose"
-						/>
-					</ListItemTitleSubtitle>
-					<ListItemTitleSubtitle>
 						<ListItemTitle>Reference</ListItemTitle>
 						<InlineEditInput
 							value={reference}
 							onChange={val => onChange(val, 'reference', id)}
 							viewProp="reference"
+						/>
+					</ListItemTitleSubtitle>
+					<ListItemTitleSubtitle>
+						<ListItemTitle>Purpose</ListItemTitle>
+						<InlineEditInput
+							value={purpose}
+							onChange={val => onChange(val, 'purpose', id)}
+							viewProp="purpose"
 						/>
 					</ListItemTitleSubtitle>
 					<ListItemTitleSubtitle>
