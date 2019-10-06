@@ -45,4 +45,33 @@ describe('Payments Reducer', () => {
 		);
 		expect(postActionState.paymentMethodsData.length).toEqual(14);
 	});
+	it('should update a single payment method\'s reference', () => {
+		const testInitialState = {
+			...INITIAL_STATE,
+			paymentMethodsData: MOCK_DATA.data.map((paymentMethod, index) => ({
+				...paymentMethod,
+				id: index
+			}))
+		};
+		const testReference = 'New reference';
+		const postActionState = PaymentsReducer(
+			testInitialState,
+			updatePaymentMethod(testReference, 'reference', 0)
+		);
+		expect(postActionState.paymentMethodsData[0].reference).toBe(testReference);
+	});
+	it('should delete a payment method\'s reference', () => {
+		const testInitialState = {
+			...INITIAL_STATE,
+			paymentMethodsData: MOCK_DATA.data.map((paymentMethod, index) => ({
+				...paymentMethod,
+				id: index
+			}))
+		};
+		const postActionState = PaymentsReducer(
+			testInitialState,
+			deletePaymentMethod(5)
+		);
+		expect(postActionState.paymentMethodsData.length).toBe(13);
+	});
 });
