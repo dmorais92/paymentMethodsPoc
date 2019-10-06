@@ -5,7 +5,8 @@ import { paymentMethodsActions } from '../Store/actions';
 import { ReactComponent as SyncIcon } from './Icons/SyncIcon.svg';
 import api from '../api';
 import StyledComponents from './Components.styled';
-import mockData from '../dev.json';
+// ! Below is imported in case Github Gists API returns 403()
+// import mockData from '../dev.json';
 import unNest from '../Utils/unNest';
 import PaymentMethodItem from './PaymentMethodItem';
 
@@ -17,7 +18,7 @@ const { Page, List, Layout, Button, Loader } = StyledComponents;
  *                                                                                      */
 //========================================================================================
 
-const Payments = props => {
+export const Payments = props => {
 	const {
 		isFetchingPayments,
 		paymentMethods,
@@ -71,8 +72,9 @@ const Payments = props => {
 Payments.propTypes = {
 	isFetchingPayments: PropTypes.bool,
 	error: PropTypes.string,
-	getPaymentMethods: PropTypes.func.isRequired,
-	updatePaymentMethod: PropTypes.func.isRequired,
+	getPaymentMethods: PropTypes.func,
+	deletePaymentMethod: PropTypes.func,
+	updatePaymentMethod: PropTypes.func,
 	paymentMethods: PropTypes.arrayOf(
 		PropTypes.shape({
 			type: PropTypes.string,
@@ -93,7 +95,10 @@ Payments.propTypes = {
 Payments.defaultProps = {
 	paymentMethods: [],
 	error: '',
-	isFetchingPayments: false
+	isFetchingPayments: false,
+	getPaymentMethods: () => console.log('getPaymentMethods'),
+	deletePaymentMethod: () => console.log('deletePaymentMethod'),
+	updatePaymentMethod: () => console.log('updatePaymentMethod')
 };
 
 //──── Container ─────────────────────────────────────────────────────────────────────────
@@ -114,7 +119,7 @@ const mapStateToProps = state => ({
 
 const GITHUB_GIST_ID = '3465445ccd2031f19bf5fc5a15035c5b';
 const GITHUB_GIST_FILENAME = 'paymentMethods.json';
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
 	updatePaymentMethod: (value, prop, id) => {
 		dispatch(updatePaymentMethod(value[prop], prop, id));
 	},
@@ -134,7 +139,8 @@ const mapDispatchToProps = dispatch => ({
 			}
 		} catch {
 			dispatch(getPaymentMethodsFailed());
-			dispatch(getPaymentMethodsSuccess(mockData.data));
+			// ! Used if Github Gist API starts returning 403 (Forbidden due to API limits)
+			// dispatch(getPaymentMethodsSuccess(mockData.data));
 		}
 	}
 });

@@ -1,92 +1,64 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
-import StyledComponents from './Components.styled';
+import PaymentMethods, { Payments, mapDispatchToProps } from './PaymentMethods';
+import configureStore from 'redux-mock-store';
+import MOCK_DATA from '../dev.json';
+import PaymentsReducer from '../Store/payments.reducer';
+import { paymentMethodsActions, deletePaymentMethod } from '../Store/actions';
 
-const { Page, AppBar, List, ListItem, Layout, Button } = StyledComponents;
+const configureMockStore = configureStore();
+const { getPaymentMethodsSuccess } = paymentMethodsActions;
 
-describe('Page component', () => {
-	it('renders without crashing', () => {
-		const div = document.createElement('div');
-		ReactDOM.render(<Page />, div);
-		ReactDOM.unmountComponentAtNode(div);
-	});
-	it('matches snapshot', () => {
-		const component = renderer.create(<Page />);
-		let tree = component.toJSON();
-		expect(tree).toMatchSnapshot();
-	});
+const INITIAL_STATE = {
+	payments: {
+		paymentMethodsData: [],
+		isFetchingPayments: false,
+		error: ''
+	}
+};
+const UPDATED_STATE = PaymentsReducer(
+	INITIAL_STATE.payments,
+	getPaymentMethodsSuccess(MOCK_DATA.data)
+);
+
+const store = configureMockStore(INITIAL_STATE);
+const updatedStore = configureMockStore({
+	payments: UPDATED_STATE
 });
-describe('AppBar component', () => {
+
+describe('PaymentMethods container', () => {
 	it('renders without crashing', () => {
 		const div = document.createElement('div');
-		ReactDOM.render(<AppBar />, div);
+		ReactDOM.render(<PaymentMethods store={store} />, div);
 		ReactDOM.unmountComponentAtNode(div);
 	});
 	it('matches snapshot', () => {
-		const component = renderer.create(<AppBar />);
+		const component = renderer.create(<PaymentMethods store={store} />);
 		let tree = component.toJSON();
 		expect(tree).toMatchSnapshot();
 	});
-});
-describe('List component', () => {
-	it('renders without crashing', () => {
-		const div = document.createElement('div');
-		ReactDOM.render(<List />, div);
-		ReactDOM.unmountComponentAtNode(div);
-	});
-	it('matches snapshot', () => {
-		const component = renderer.create(<List />);
-		let tree = component.toJSON();
-		expect(tree).toMatchSnapshot();
-	});
-});
-describe('ListItem component', () => {
-	it('renders without crashing', () => {
-		const div = document.createElement('div');
-		ReactDOM.render(<ListItem />, div);
-		ReactDOM.unmountComponentAtNode(div);
-	});
-	it('matches snapshot', () => {
-		const component = renderer.create(<ListItem />);
-		let tree = component.toJSON();
-		expect(tree).toMatchSnapshot();
-	});
-});
-describe('Layout component', () => {
-	it('renders without crashing', () => {
-		const div = document.createElement('div');
-		ReactDOM.render(<Layout />, div);
-		ReactDOM.unmountComponentAtNode(div);
-	});
-	it('matches snapshot', () => {
-		const component = renderer.create(<Layout />);
-		let tree = component.toJSON();
-		expect(tree).toMatchSnapshot();
+	it('should have the same amount of props and store payment methods', () => {
+		const component = renderer.create(<PaymentMethods store={updatedStore} />);
+		const componentInstance = component.root;
+		expect(
+			componentInstance.props.store.getState().payments.paymentMethodsData
+				.length
+		).toBe(14);
 	});
 });
 
-describe('Button component', () => {
-	it('renders without crashing', () => {
-		const div = document.createElement('div');
-		ReactDOM.render(<Button />, div);
-		ReactDOM.unmountComponentAtNode(div);
+describe('Payments component', () => {
+	it('matches snapshot', () => {
+		const component = renderer.create(<Payments />);
+		let tree = component.toJSON();
+		expect(tree).toMatchSnapshot();
 	});
-
-	it('renders multiple children', () => {
+	it('has same number of children as paymentMethods', () => {
 		const component = renderer.create(
-			<Button>
-				<h1>Testing with multiple children</h1>A short paragraph
-			</Button>
+			<Payments paymentMethods={UPDATED_STATE.paymentMethodsData} />
 		);
-		expect(component.root.findByType('h1').props.children).toBe(
-			'Testing with multiple children'
-		);
-	});
-
-	it('matches snapshot', () => {
-		const component = renderer.create(<Button />);
-		let tree = component.toJSON();
-		expect(tree).toMatchSnapshot();
+		const testInstance = component.root;
+		expect(testInstance.findAll(el => el.type.target === 'li').length).toBe(14);
 	});
 });
