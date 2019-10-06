@@ -111,9 +111,8 @@ const AppBar = styled.div`
 `;
 
 const List = styled.ul`
-	margin: 32px 0px;
-	padding: 16px;
-	width: 100%;
+	margin: 12px 0px;
+	padding: 24px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	max-height 65vh;
@@ -132,8 +131,9 @@ const ListItem = styled.li`
 	width: 100%;
 	align-items: center;
 	border-radius: 2px;
+	margin: 24px auto;
 	button {
-		height: 24px;
+		height: 32px;
 	}
 	svg {
 		height: 12px;

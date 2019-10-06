@@ -43,6 +43,7 @@ const PaymentMethodItem = props => {
 		opacity: 1;
 		max-height: 250px;
 		overflow-y: auto;
+		overflow-x: hidden;
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: space-between;
@@ -75,12 +76,14 @@ const PaymentMethodItem = props => {
 				<ListItemTitle>{reference}</ListItemTitle>
 				<ListItemSubtitle>{date}</ListItemSubtitle>
 			</ListItemTitleSubtitle>
-			<Button onClick={() => toggleExpanded(!expanded)}>
-				<DownIcon className={(expanded && 'inverted') || ''} />
-			</Button>
-			<Button plain onClick={() => onDelete(id)}>
-				<StyledDeleteIcon />
-			</Button>
+			<ListItemTitleSubtitle>
+				<Button plain onClick={() => onDelete(id)}>
+					<StyledDeleteIcon />
+				</Button>
+				<Button onClick={() => toggleExpanded(!expanded)}>
+					<DownIcon className={(expanded && 'inverted') || ''} />
+				</Button>
+			</ListItemTitleSubtitle>
 			{expanded && (
 				<ExpandedSection>
 					<ListItemTitleSubtitle>

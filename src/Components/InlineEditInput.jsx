@@ -15,6 +15,7 @@ const InlineEditInput = props => {
 				propName={viewProp}
 				className="input"
 				classEditing="input-editing"
+				validate={value => value.length}
 			/>
 		</div>
 	);
@@ -33,7 +34,7 @@ InlineEditInput.defaultProps = {
 
 export default styled(InlineEditInput)`
 	display: flex;
-	flex-flow: row nowrap;
+	flex-flow: row wrap;
 	aling-items: center;
 	.input {
 		font-size: 14px;
