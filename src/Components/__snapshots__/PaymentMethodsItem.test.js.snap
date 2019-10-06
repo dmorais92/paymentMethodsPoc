@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaymentMethodItem component matches snapshot 1`] = `
+<li
+  className="sc-EHOje gXHTYI"
+>
+  <div
+    className="sc-bZQynM dOyCpF"
+  >
+    <span
+      className="sc-gzVnrw hKiksa"
+    />
+    <span
+      className="sc-htoDjs nWToP"
+    />
+  </div>
+  <div
+    className="sc-bZQynM dOyCpF"
+  >
+    <span
+      className="sc-gzVnrw hKiksa"
+      data-test-id="reference-title"
+    />
+    <span
+      className="sc-htoDjs nWToP"
+    />
+  </div>
+  <div
+    className="sc-bZQynM dOyCpF"
+  >
+    <button
+      className="sc-dnqmqq bhINPb"
+      onClick={[Function]}
+    >
+      <svg
+        className="sc-gZMcBi iGGoPK"
+      >
+        DeleteIcon.svg
+      </svg>
+    </button>
+    <button
+      className="sc-dnqmqq bBTZLR"
+      data-test-id="expand-button"
+      onClick={[Function]}
+    >
+      <svg
+        className=""
+      >
+        DownIcon.svg
+      </svg>
+    </button>
+  </div>
+</li>
+`;

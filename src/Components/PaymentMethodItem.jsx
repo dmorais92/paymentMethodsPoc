@@ -73,14 +73,19 @@ const PaymentMethodItem = props => {
 				<ListItemSubtitle>{currency}</ListItemSubtitle>
 			</ListItemTitleSubtitle>
 			<ListItemTitleSubtitle>
-				<ListItemTitle>{reference}</ListItemTitle>
+				<ListItemTitle data-test-id="reference-title">
+					{reference}
+				</ListItemTitle>
 				<ListItemSubtitle>{date}</ListItemSubtitle>
 			</ListItemTitleSubtitle>
 			<ListItemTitleSubtitle>
 				<Button plain onClick={() => onDelete(id)}>
 					<StyledDeleteIcon />
 				</Button>
-				<Button onClick={() => toggleExpanded(!expanded)}>
+				<Button
+					data-test-id="expand-button"
+					onClick={() => toggleExpanded(!expanded)}
+				>
 					<DownIcon className={(expanded && 'inverted') || ''} />
 				</Button>
 			</ListItemTitleSubtitle>
@@ -122,7 +127,7 @@ const PaymentMethodItem = props => {
 						<ListItemSubtitle>
 							{amount} {currency}
 						</ListItemSubtitle>
-						<ListItemTitle> + Charges</ListItemTitle>
+						<ListItemTitle> + Receiver Charges</ListItemTitle>
 						<ListItemSubtitle>
 							{charges.receiver_charges_amount}{' '}
 							{charges.receiver_charges_currency}
@@ -137,8 +142,8 @@ const PaymentMethodItem = props => {
 PaymentMethodItem.propTypes = {
 	type: PropTypes.string,
 	amount: PropTypes.string,
-	id: PropTypes.string.isRequired,
-	beneficiary: PropTypes.object,
+	id: PropTypes.string,
+	benificiary: PropTypes.object,
 	charges: PropTypes.shape({
 		sender: PropTypes.object,
 		receiver: PropTypes.object
@@ -150,7 +155,13 @@ PaymentMethodItem.propTypes = {
 };
 
 PaymentMethodItem.defaultProps = {
-	// bla: 'test',
+	id: '0',
+	benificiary: {},
+	charges: {
+		sender: {},
+		receiver: {}
+	},
+	debotor: {}
 };
 
 export default PaymentMethodItem;

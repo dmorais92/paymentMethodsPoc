@@ -7,7 +7,7 @@ import { RIEInput } from 'riek2';
 const InlineEditInput = props => {
 	const { onChange, value, viewProp, className } = props;
 	return (
-		<div className={className}>
+		<div className={className} data-test-id="inline-inputs">
 			<EditIcon />
 			<RIEInput
 				value={value}

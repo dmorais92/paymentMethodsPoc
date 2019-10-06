@@ -96,9 +96,9 @@ Payments.defaultProps = {
 	paymentMethods: [],
 	error: '',
 	isFetchingPayments: false,
-	getPaymentMethods: () => console.log('getPaymentMethods'),
-	deletePaymentMethod: () => console.log('deletePaymentMethod'),
-	updatePaymentMethod: () => console.log('updatePaymentMethod')
+	getPaymentMethods: () => null,
+	deletePaymentMethod: () => null,
+	updatePaymentMethod: () => null
 };
 
 //──── Container ─────────────────────────────────────────────────────────────────────────

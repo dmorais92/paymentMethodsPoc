@@ -12,29 +12,6 @@ exports[`Button component matches snapshot 1`] = `
 />
 `;
 
-exports[`Button component renders multiple children 1`] = `
-<button
-  className="sc-dnqmqq bBTZLR"
->
-  <h1>
-    Testing with multiple children
-  </h1>
-  A short paragraph
-</button>
-`;
-
-exports[`Button component renders with extra classes 1`] = `
-<button
-  className="sc-dnqmqq bBTZLR an array of classes"
-/>
-`;
-
-exports[`Button snapshot renders with extra classes 1`] = `
-<button
-  className="sc-dnqmqq bBTZLR an array of classes"
-/>
-`;
-
 exports[`Layout component matches snapshot 1`] = `
 <div
   className="sc-bwzfXH bHMTeK"
