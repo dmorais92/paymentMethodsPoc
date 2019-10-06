@@ -36,10 +36,10 @@ export const updatePaymentMethod = (value, prop, id) => ({
 	}
 });
 
-export const deletePaymentMethod = deletedPaymentMethod => ({
+export const deletePaymentMethod = id => ({
 	type: ACTION_TYPES.PAYMENT_METHODS.DELETE_PM,
 	payload: {
-		deletedPaymentMethod
+		deletedPaymentMethodId: id
 	}
 });
 

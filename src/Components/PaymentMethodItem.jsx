@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import StyledComponents from './Components.styled';
 import { ReactComponent as DownIcon } from './Icons/DownIcon.svg';
+import { ReactComponent as DeleteIcon } from './Icons/DeleteIcon.svg';
 import InlineEditInput from './InlineEditInput';
 
 const {
@@ -12,7 +13,21 @@ const {
 	ListItemTitleSubtitle,
 	ListItemTitle
 } = StyledComponents;
-//import { Test } from './PaymentMethodItem.styles';
+
+const StyledDeleteIcon = styled(DeleteIcon)`
+	&& {
+		height: 24px;
+		width: 24px;
+		> :nth-child(2) {
+			fill: #f44336;
+		}
+		&:hover {
+			> :nth-child(2) {
+				fill: #c62828;
+			}
+		}
+	}
+`;
 
 const PaymentMethodItem = props => {
 	const [expanded, toggleExpanded] = useState(false);
@@ -32,6 +47,7 @@ const PaymentMethodItem = props => {
 	`;
 	const {
 		onChange,
+		onDelete,
 		amount,
 		currency,
 		reference,
@@ -57,6 +73,9 @@ const PaymentMethodItem = props => {
 			<Button onClick={() => toggleExpanded(!expanded)}>
 				<DownIcon className={(expanded && 'inverted') || ''} />
 			</Button>
+			<Button plain onClick={() => onDelete(id)}>
+				<StyledDeleteIcon />
+			</Button>
 			{expanded && (
 				<ExpandedSection>
 					<ListItemTitleSubtitle>
@@ -68,7 +87,7 @@ const PaymentMethodItem = props => {
 						<InlineEditInput
 							value={purpose}
 							onChange={val => onChange(val, 'purpose', id)}
-							viewProp={'purpose'}
+							viewProp="purpose"
 						/>
 					</ListItemTitleSubtitle>
 					<ListItemTitleSubtitle>
@@ -76,7 +95,7 @@ const PaymentMethodItem = props => {
 						<InlineEditInput
 							value={reference}
 							onChange={val => onChange(val, 'reference', id)}
-							viewProp={'reference'}
+							viewProp="reference"
 						/>
 					</ListItemTitleSubtitle>
 					<ListItemTitleSubtitle>

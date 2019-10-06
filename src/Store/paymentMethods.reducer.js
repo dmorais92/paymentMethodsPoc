@@ -1,6 +1,6 @@
+import uniqid from 'uniqid';
 import { ACTION_TYPES } from './actions';
 import getPropsFromRawData from '../Utils/getPropsFromRawData';
-import uniqid from 'uniqid';
 
 const MAP_PATH_TO_PROP = {
 	type: 'type',
@@ -47,6 +47,13 @@ export default function users(
 				}
 				return pm;
 			})
+		};
+	case ACTION_TYPES.PAYMENT_METHODS.DELETE_PM:
+		return {
+			...state,
+			paymentMethodsData: state.paymentMethodsData.filter(
+				pm => pm.id !== action.payload.deletedPaymentMethodId
+			)
 		};
 	case ACTION_TYPES.PAYMENT_METHODS.GET_PM_FAILED:
 		return {

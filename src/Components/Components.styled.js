@@ -86,7 +86,7 @@ const List = styled.ul`
 	margin: 32px 0px;
 	padding: 16px;
 	width: 100%;
-	overflow-y: scroll;
+	overflow-y: auto;
 	overflow-x: hidden;
 	max-height 65vh;
 `;
@@ -134,13 +134,14 @@ const ListItemSubtitle = styled.span`
 `;
 
 const Button = styled.button`
-	background-color: ${THEME.colors.primary};
+	background-color: ${props =>
+		(!props.plain && THEME.colors.primary) || 'transparent'};
 	border-radius: 2px;
 	border: none;
 	color: ${THEME.colors.secondary};
 	height: 24px;
 	&:hover {
-		background-color: ${THEME.colors.primary}dd;
+		background-color: ${props => (!props.plain && '#0097a7') || 'transparent'};
 		cursor: pointer;
 	}
 `;

@@ -22,7 +22,8 @@ const Payments = props => {
 		paymentMethods,
 		error,
 		getPaymentMethods,
-		updatePaymentMethod
+		updatePaymentMethod,
+		deletePaymentMethod
 	} = props;
 
 	useEffect(() => {
@@ -39,9 +40,10 @@ const Payments = props => {
 					{paymentMethods.map((pm, i) => {
 						return (
 							<PaymentMethodItem
-								key={pm.reference + i}
+								key={pm.id}
 								{...pm}
 								onChange={updatePaymentMethod}
+								onDelete={deletePaymentMethod}
 							/>
 						);
 					})}
@@ -100,6 +102,9 @@ const GITHUB_GIST_FILENAME = 'paymentMethods.json';
 const mapDispatchToProps = dispatch => ({
 	updatePaymentMethod: (value, prop, id) => {
 		dispatch(updatePaymentMethod(value[prop], prop, id));
+	},
+	deletePaymentMethod: id => {
+		dispatch(deletePaymentMethod(id));
 	},
 	getPaymentMethods: async () => {
 		dispatch(getPaymentMethods());
