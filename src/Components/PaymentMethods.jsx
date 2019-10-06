@@ -9,7 +9,7 @@ import mockData from '../dev.json';
 import unNest from '../Utils/unNest';
 import PaymentMethodItem from './PaymentMethodItem';
 
-const { Page, List, Layout, Button } = StyledComponents;
+const { Page, List, Layout, Button, Loader } = StyledComponents;
 
 //========================================================================================
 /*                                                                                      *
@@ -45,18 +45,24 @@ const Payments = props => {
 					</Button>
 				</h1>
 				<h2>Click to expand and view payment method details</h2>
-				<List>
-					{paymentMethods.map((pm, i) => {
-						return (
-							<PaymentMethodItem
-								key={pm.id}
-								{...pm}
-								onChange={updatePaymentMethod}
-								onDelete={deletePaymentMethod}
-							/>
-						);
-					})}
-				</List>
+				{isFetchingPayments ? (
+					<Loader>
+						<SyncIcon />
+					</Loader>
+				) : (
+					<List>
+						{paymentMethods.map((pm, i) => {
+							return (
+								<PaymentMethodItem
+									key={pm.id}
+									{...pm}
+									onChange={updatePaymentMethod}
+									onDelete={deletePaymentMethod}
+								/>
+							);
+						})}
+					</List>
+				)}
 			</Layout>
 		</Page>
 	);

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import payments from './paymentMethods.reducer';
+import payments from './payments.reducer';
 
 const Root = combineReducers({
 	payments

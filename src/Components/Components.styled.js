@@ -110,6 +110,20 @@ const AppBar = styled.div`
 	}
 `;
 
+const Loader = styled.div`
+	${rotateAnimation}
+	align-self: center
+	svg {
+		animation: spin 2.5s ease-out infinite;
+		height: 64px;
+		width: 64px;
+		margin: 0px 6px;
+		> :first-child {
+			fill: ${THEME.colors.primary};
+		}
+	}
+`;
+
 const List = styled.ul`
 	margin: 12px 0px;
 	padding: 24px;
@@ -187,5 +201,6 @@ export default {
 	Button,
 	ListItemTitleSubtitle,
 	ListItemTitle,
-	ListItemSubtitle
+	ListItemSubtitle,
+	Loader
 };
