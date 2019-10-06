@@ -12,6 +12,12 @@ const THEME = {
 	}
 };
 
+const rotateAnimation = `
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}`;
+
 const Page = styled.div`
 	width: 100%;
 	display: flex;
@@ -23,6 +29,7 @@ const Page = styled.div`
 `;
 
 const Layout = styled.div`
+	${rotateAnimation}
 	max-width: 600px;
 	width: 100%;
 	margin: 0px 20px;
@@ -38,9 +45,30 @@ const Layout = styled.div`
 		font-weight: normal;
 		font-size: 24px;
 		line-height: 32px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		button {
+			margin: 12px;
+			padding: 6px;
+			height: 32px;
+			&.syncing {
+				svg {
+					animation: spin 0.5s ease-out infinite;
+				}
+			}
+			svg {
+				height: 16px;
+				width: 16px;
+				margin: 0px 6px;
+				> :first-child {
+					fill: ${THEME.colors.secondary};
+				}
+			}
+		}
 	}
 	h2 {
-		font-weight: 500;
+		ont-weight: 500;
 		font-size: 14px;
 		line-height: 17px;
 		max-width: 50%;

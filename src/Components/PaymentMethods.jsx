@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { paymentMethodsActions } from '../Store/actions';
+import { ReactComponent as SyncIcon } from './Icons/SyncIcon.svg';
 import api from '../api';
 import StyledComponents from './Components.styled';
 import mockData from '../dev.json';
 import unNest from '../Utils/unNest';
 import PaymentMethodItem from './PaymentMethodItem';
 
-const { Page, List, Layout } = StyledComponents;
+const { Page, List, Layout, Button } = StyledComponents;
 
 //========================================================================================
 /*                                                                                      *
@@ -34,7 +35,15 @@ const Payments = props => {
 	return (
 		<Page>
 			<Layout>
-				<h1>Payment Methods</h1>
+				<h1>
+					Payment Methods
+					<Button
+						className={(isFetchingPayments && 'syncing') || ''}
+						onClick={() => getPaymentMethods()}
+					>
+						<SyncIcon />
+					</Button>
+				</h1>
 				<h2>Click to expand and view payment method details</h2>
 				<List>
 					{paymentMethods.map((pm, i) => {
