@@ -1,5 +1,6 @@
 import { ACTION_TYPES } from './actions';
 import getPropsFromRawData from '../Utils/getPropsFromRawData';
+import uniqid from 'uniqid';
 
 const MAP_PATH_TO_PROP = {
 	type: 'type',
@@ -32,9 +33,10 @@ export default function users(
 		return {
 			...state,
 			isFetchingPayments: false,
-			paymentMethodsData: action.payload.paymentMethods.map(pm =>
-				getPropsFromRawData(pm, MAP_PATH_TO_PROP)
-			)
+			paymentMethodsData: action.payload.paymentMethods.map(pm => ({
+				...getPropsFromRawData(pm, MAP_PATH_TO_PROP),
+				id: uniqid()
+			}))
 		};
 	case ACTION_TYPES.PAYMENT_METHODS.GET_PM_FAILED:
 		return {
