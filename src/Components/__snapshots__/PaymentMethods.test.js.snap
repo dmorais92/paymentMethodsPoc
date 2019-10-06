@@ -2,15 +2,15 @@
 
 exports[`PaymentMethods container matches snapshot 1`] = `
 <div
-  className="sc-bdVaJa fPdLJN"
+  className="sc-bdVaJa cZdAbv"
 >
   <div
-    className="sc-bwzfXH bHMTeK"
+    className="sc-bwzfXH gmciWy"
   >
     <h1>
       Payment Methods
       <button
-        className="sc-dnqmqq bBTZLR"
+        className="sc-dnqmqq fSRbzf"
         onClick={[Function]}
       >
         <svg>
@@ -30,15 +30,15 @@ exports[`PaymentMethods container matches snapshot 1`] = `
 
 exports[`Payments component matches snapshot 1`] = `
 <div
-  className="sc-bdVaJa fPdLJN"
+  className="sc-bdVaJa cZdAbv"
 >
   <div
-    className="sc-bwzfXH bHMTeK"
+    className="sc-bwzfXH gmciWy"
   >
     <h1>
       Payment Methods
       <button
-        className="sc-dnqmqq bBTZLR"
+        className="sc-dnqmqq fSRbzf"
         onClick={[Function]}
       >
         <svg>

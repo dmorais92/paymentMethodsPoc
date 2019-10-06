@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-	baseURL: 'https://api.github.com/gists/',
-	timeout: 1000
+  baseURL: 'https://api.github.com/gists/',
+  timeout: 1000,
 });
 
 export default api;

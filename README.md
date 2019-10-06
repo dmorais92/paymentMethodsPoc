@@ -4,9 +4,11 @@
   - Fully responsive application.
   - Basic CRUD Redux actions.
   - Persistence through Local Storage
-  - Tested components and reducers with Jest.
+  - Tested components and reducers with Jest and React Test Renderer
 
+## Architectural Overview
 ![Payment Methods Diagram](./PaymentMethods.svg)
+
 ## CRA
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Available Scripts

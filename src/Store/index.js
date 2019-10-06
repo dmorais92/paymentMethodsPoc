@@ -8,21 +8,17 @@ import { loadState, saveState } from './localStorage';
 const isDevelopment = process.env.NODE_ENV === 'development';
 const middlewares = [thunk];
 if (isDevelopment) {
-	middlewares.push(logger);
+  middlewares.push(logger);
 }
 
 const persistedState = loadState();
-const store = createStore(
-	RootReducer,
-	persistedState,
-	applyMiddleware(...middlewares)
-);
+const store = createStore(RootReducer, persistedState, applyMiddleware(...middlewares));
 
 store.subscribe(
-	throttle(() => {
-		saveState({
-			payments: store.getState().payments
-		});
-	}, 1000)
+  throttle(() => {
+    saveState({
+      payments: store.getState().payments,
+    });
+  }, 1000),
 );
 export default store;

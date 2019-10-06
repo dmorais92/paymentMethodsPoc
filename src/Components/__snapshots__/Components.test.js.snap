@@ -2,19 +2,19 @@
 
 exports[`AppBar component matches snapshot 1`] = `
 <div
-  className="sc-htpNat csDlPS"
+  className="sc-htpNat gkzpEH"
 />
 `;
 
 exports[`Button component matches snapshot 1`] = `
 <button
-  className="sc-dnqmqq bBTZLR"
+  className="sc-dnqmqq fSRbzf"
 />
 `;
 
 exports[`Layout component matches snapshot 1`] = `
 <div
-  className="sc-bwzfXH bHMTeK"
+  className="sc-bwzfXH gmciWy"
 />
 `;
 
@@ -26,12 +26,12 @@ exports[`List component matches snapshot 1`] = `
 
 exports[`ListItem component matches snapshot 1`] = `
 <li
-  className="sc-EHOje gXHTYI"
+  className="sc-EHOje jJKfMq"
 />
 `;
 
 exports[`Page component matches snapshot 1`] = `
 <div
-  className="sc-bdVaJa fPdLJN"
+  className="sc-bdVaJa cZdAbv"
 />
 `;
