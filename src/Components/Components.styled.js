@@ -48,22 +48,22 @@ const Layout = styled.div`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		button {
-			margin: 12px;
-			padding: 6px;
-			height: 32px;
-			&.syncing {
-				svg {
-					animation: spin 0.5s ease-out infinite;
-				}
-			}
+	}
+	button {
+		margin: 12px;
+		padding: 6px;
+		height: auto;
+		&.syncing {
 			svg {
-				height: 16px;
-				width: 16px;
-				margin: 0px 6px;
-				> :first-child {
-					fill: ${THEME.colors.secondary};
-				}
+				animation: spin 0.5s ease-out infinite;
+			}
+		}
+		svg {
+			height: 16px;
+			width: 16px;
+			margin: 0px 6px;
+			> :first-child {
+				fill: ${THEME.colors.secondary};
 			}
 		}
 	}
@@ -132,6 +132,9 @@ const ListItem = styled.li`
 	width: 100%;
 	align-items: center;
 	border-radius: 2px;
+	button {
+		height: 24px;
+	}
 	svg {
 		height: 12px;
 		width: 12px;
@@ -169,7 +172,6 @@ const Button = styled.button`
 	border-radius: 2px;
 	border: none;
 	color: ${THEME.colors.secondary};
-	height: 24px;
 	&:hover {
 		background-color: ${props => (!props.plain && '#0097a7') || 'transparent'};
 		cursor: pointer;

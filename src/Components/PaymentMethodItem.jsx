@@ -18,6 +18,11 @@ const StyledDeleteIcon = styled(DeleteIcon)`
 	&& {
 		height: 24px;
 		width: 24px;
+		border-radius: 50px;
+		border: 2px solid #ddd;
+		position: relative;
+		bottom: 12px;
+
 		> :nth-child(2) {
 			fill: #f44336;
 		}
